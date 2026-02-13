@@ -1,13 +1,13 @@
 import { Schema, model, Types } from "mongoose";
 
-export interface Imember {
+export interface IMember {
   name: string;
   phone: string;
   referredBy: Types.ObjectId;
   createdAt: Date;
 }
 
-const memberSchema = new Schema<Imember>(
+const memberSchema = new Schema<IMember>(
   {
     name: {
       type: String,
@@ -25,10 +25,10 @@ const memberSchema = new Schema<Imember>(
     },
     createdAt: {
       type: Date,
-      default: Date.now(),
+      default: Date.now,
     },
   },
   { timestamps: true },
 );
 
-export const Member = model<Imember>("Member", memberSchema);
+export const Member = model<IMember>("Member", memberSchema);
