@@ -1,28 +1,27 @@
-import { Button, Container, Typography, Box } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { Container, Box } from "@mui/material";
+
+import Navbar from "../../components/landing/Navbar";
+import Hero from "../../components/landing/Hero";
+import Features from "../../components/landing/Features";
+import Stats from "../../components/landing/Stats";
+import CTA from "../../components/landing/CTA";
+import HeroSection from "../../components/landing/HeroSection";
 
 export default function Landing() {
-  const navigate = useNavigate();
-
   return (
-    <Container maxWidth="lg">
-      <Box mt={10} textAlign="center">
-        <Typography variant="h3" fontWeight="bold">
-          Nutrition Club
-        </Typography>
+    <>
+      {/* <Navbar /> */}
 
-        <Typography mt={2}>
-          Empowering You on the Journey to Wellness
-        </Typography>
+      <HeroSection />
 
-        <Button
-          variant="contained"
-          sx={{ mt: 4 }}
-          onClick={() => navigate("/login")}
-        >
-          Member Login
-        </Button>
-      </Box>
-    </Container>
+      <Container maxWidth="lg">
+        <Box mt={5}>
+          {/* <Hero /> */}
+          <Features />
+          <Stats />
+          <CTA />
+        </Box>
+      </Container>
+    </>
   );
 }
