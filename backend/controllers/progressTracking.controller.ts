@@ -39,7 +39,7 @@ export const createProgressTracking = async (req: Request, res: Response) => {
       return res.status(400).json({ message: "Member doesn't exist" });
     }
     const memberShip = await Membership.findOne({
-      memberObjId,
+      memberId,
       status: "ACTIVE",
     });
     if (!memberShip) {
