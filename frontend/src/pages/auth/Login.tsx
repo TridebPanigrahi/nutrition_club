@@ -7,9 +7,11 @@ import { loginSchema } from "../../validation/loginSchema";
 import type { LoginRequest } from "../../types/auth.types";
 import { loginApi } from "../../services/authService";
 import { useAuth } from "../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const { login } = useAuth();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -23,9 +25,9 @@ export default function Login() {
     login(response.token, response.user);
 
     if (response.user.role === "admin") {
-      window.location.href = "/admin/dashboard";
+      navigate("/admin/dashboard");
     } else {
-      window.location.href = "/user/dashboard";
+      navigate("/user/dashboard");
     }
   };
 
@@ -60,6 +62,9 @@ export default function Login() {
             Login
           </Button>
         </form>
+        <Button fullWidth sx={{ mt: 2 }} onClick={() => navigate("/register")}>
+          Don't have account ? Register
+        </Button>
       </Box>
     </Container>
   );

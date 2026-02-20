@@ -35,6 +35,7 @@ export const AuthProvider = ({ children }: Props) => {
     localStorage.removeItem("user");
     setToken(null);
     setUser(null);
+    window.location.href = "/";
   };
 
   return (

@@ -59,6 +59,7 @@ export default function Register() {
             fullWidth
             label="Password"
             margin="normal"
+            type="password"
             {...register("password")}
             error={!!errors.password}
             helperText={errors.password?.message as string}
@@ -67,6 +68,7 @@ export default function Register() {
             fullWidth
             label="Conform Password"
             margin="normal"
+            type="password"
             {...register("conformPassword")}
             error={!!errors.conformPassword}
             helperText={errors.conformPassword?.message as string}

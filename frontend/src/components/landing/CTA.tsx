@@ -20,7 +20,7 @@ export default function CTA() {
       <Button
         variant="contained"
         sx={{ mt: 3, background: "#fff", color: "#2e7d32" }}
-        onClick={() => navigate("/login")}
+        onClick={() => navigate("/register")}
       >
         Join Now
       </Button>
