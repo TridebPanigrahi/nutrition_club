@@ -25,9 +25,9 @@ export default function Login() {
     login(response.token, response.user);
 
     if (response.user.role === "admin") {
-      window.location.href = "/admin/dashboard";
+      navigate("/admin/dashboard");
     } else {
-      window.location.href = "/user/dashboard";
+      navigate("/user/dashboard");
     }
   };
 

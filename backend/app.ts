@@ -16,6 +16,6 @@ app.use("/memberships", membershipRoutes);
 app.use("/attendance", attendanceRoute);
 app.use("/body-measurement", bodyMeasurementRoute);
 app.use("/progress-tracking", progressTrackingRoutes);
-app.use("/api/auth", authRoutes);
+app.use("/auth", authRoutes);
 
 export default app;
