@@ -6,8 +6,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../../validation/loginSchema";
 import type { LoginRequest } from "../../types/auth.types";
 import { loginApi } from "../../services/authService";
+import { useAuth } from "../../hooks/useAuth";
 
 export default function Login() {
+  const { login } = useAuth();
   const {
     register,
     handleSubmit,
@@ -18,9 +20,7 @@ export default function Login() {
 
   const onSubmit = async (data: LoginRequest) => {
     const response = await loginApi(data);
-
-    localStorage.setItem("token", response.token);
-    localStorage.setItem("user", JSON.stringify(response.user));
+    login(response.token, response.user);
 
     if (response.user.role === "admin") {
       window.location.href = "/admin/dashboard";

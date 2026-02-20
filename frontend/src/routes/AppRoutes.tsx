@@ -5,6 +5,7 @@ import PrivateRoute from "./PrivateRoute";
 import { RoleRoute } from "./RoleRoute";
 import AdminDashboard from "../pages/admin/AdminDashboard";
 import UserDashboard from "../pages/user/UserDashboard";
+import Register from "../pages/auth/Register";
 
 export default function AppRoutes() {
   return (
@@ -14,6 +15,7 @@ export default function AppRoutes() {
 
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         {/* Admin */}
 
         <Route
