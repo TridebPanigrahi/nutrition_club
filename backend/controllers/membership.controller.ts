@@ -38,3 +38,19 @@ export const createMembership = async (req: Request, res: Response) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+export const getMembership = async (_: Request, res: Response) => {
+  try {
+    const membership = await Membership.find({})
+      .populate({
+        path: "memberId",
+        model: "Member",
+        select: "name referredBy",
+        populate: { path: "referredBy", select: "name", model: "Member" },
+      })
+      .lean();
+    res.json(membership);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};

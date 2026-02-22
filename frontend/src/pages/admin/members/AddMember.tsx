@@ -46,8 +46,11 @@ export const AddMember = () => {
 
   const fetchMembersData = async () => {
     try {
-      const data = await Promise.all([getUsers(), getMember()]);
-      setReferrals([...data]);
+      const [userData, memberData] = await Promise.all([
+        getUsers(),
+        getMember(),
+      ]);
+      setReferrals([...userData, ...memberData]);
     } catch (error) {}
   };
 
@@ -120,7 +123,7 @@ export const AddMember = () => {
                   render={({ field }) => (
                     <DatePicker
                       label="Created At"
-                      // value={field.name}
+                      value={dayjs(field.value)}
                       onChange={field.onChange}
                       slotProps={{
                         textField: { fullWidth: true, margin: "normal" },
