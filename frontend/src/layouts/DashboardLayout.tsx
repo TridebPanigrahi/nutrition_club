@@ -8,7 +8,9 @@ export default function DashboardLayout({ children }: any) {
       <Topbar />
       <Box display="flex">
         <Sidebar />
-        <Box p={3}>{children}</Box>
+        <Box p={3} width="100%">
+          {children}
+        </Box>
       </Box>
     </Box>
   );

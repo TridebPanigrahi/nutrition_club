@@ -24,13 +24,15 @@ export default function Sidebar() {
         Nutrition Club
       </Typography>
       <List>
-        <ListItemButton>
+        <ListItemButton onClick={() => navigate("/admin/dashboard")}>
           <ListItemText primary="Dashboard" />
         </ListItemButton>
-        <ListItemButton>
+        <ListItemButton onClick={() => navigate("/admin/members")}>
           <ListItemText primary="Members" />
         </ListItemButton>
-
+        <ListItemButton onClick={() => navigate("/admin/membership")}>
+          <ListItemText primary="Membership" />
+        </ListItemButton>
         <ListItemButton>
           <ListItemText primary="Attendance" />
         </ListItemButton>
