@@ -30,7 +30,9 @@ export default function Sidebar() {
         <ListItemButton onClick={() => navigate("/admin/members")}>
           <ListItemText primary="Members" />
         </ListItemButton>
-
+        <ListItemButton onClick={() => navigate("/admin/membership")}>
+          <ListItemText primary="Membership" />
+        </ListItemButton>
         <ListItemButton>
           <ListItemText primary="Attendance" />
         </ListItemButton>
