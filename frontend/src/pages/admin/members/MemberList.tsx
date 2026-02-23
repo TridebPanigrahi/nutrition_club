@@ -74,15 +74,6 @@ export default function MemberList() {
                 <TableCell>
                   <Button
                     size="small"
-                    variant="contained"
-                    onClick={() =>
-                      navigate(`/admin/members/${member._id}/membership/add`)
-                    }
-                  >
-                    Add Membership
-                  </Button>
-                  <Button
-                    size="small"
                     onClick={() =>
                       navigate(`/admin/members/edit/${member._id}`)
                     }

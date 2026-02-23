@@ -16,25 +16,40 @@ import { useEffect, useState } from "react";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
-import { getMemberforMembership } from "../../../services/membershipService";
+import {
+  createMembership,
+  getMemberforMembership,
+} from "../../../services/membershipService";
+import type { MembershipFormData } from "../../../types/membership.types";
+import { useNavigate } from "react-router-dom";
 
 export default function AddMembership() {
   const [members, setMembers] = useState<any[]>([]);
+  const navigate = useNavigate();
   const {
-    register,
     control,
-    watch,
-    setValue,
+    register,
     handleSubmit,
+    setValue,
+    watch,
+    getValues,
     formState: { errors },
-  } = useForm({
+  } = useForm<MembershipFormData>({
     resolver: yupResolver(membershipSchema),
     defaultValues: {
-      startDate: dayjs().toDate(),
-      expiryDate: dayjs().toDate(),
+      usedDays: 0,
+      startDate: dayjs(),
+      expiryDate: dayjs(),
       status: "ACTIVE",
     },
   });
+
+  console.log("GetVal", getValues());
+
+  const totalDays = watch("totalDays");
+
+  const startDate = watch("startDate");
+
   const fetchMembers = async () => {
     const data = await getMemberforMembership();
     setMembers(data);
@@ -42,11 +57,28 @@ export default function AddMembership() {
   useEffect(() => {
     fetchMembers();
   }, []);
+
+  useEffect(() => {
+    if (startDate && totalDays) {
+      const expiry = dayjs(startDate).add(totalDays, "day");
+      setValue("expiryDate", expiry);
+    }
+  }, [startDate, totalDays]);
+  const onSubmit = async (data: MembershipFormData) => {
+    const payload = {
+      ...data,
+      startDate: data.startDate?.toISOString(),
+      expiryDate: data.expiryDate?.toISOString(),
+    };
+
+    await createMembership(payload);
+    navigate("/admin/membership");
+  };
   return (
     <DashboardLayout>
       <Paper sx={{ p: 3 }}>
         <Typography variant="h5">Add Membership</Typography>
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={2} alignItems="center">
             <Grid size={{ xs: 12, md: 6 }}>
               <Controller
@@ -57,6 +89,9 @@ export default function AddMembership() {
                     options={members}
                     getOptionLabel={(option) => option.name}
                     value={members.find((m) => m._id === field.value) || null}
+                    onChange={(event, value) => {
+                      field.onChange(value?._id || "");
+                    }}
                     renderInput={(param) => (
                       <TextField
                         {...param}
@@ -92,8 +127,11 @@ export default function AddMembership() {
               <TextField
                 label="Used Days"
                 fullWidth
+                type="number"
                 margin="normal"
-                name="usedDays"
+                // {...register("usedDays")}
+                disabled
+                defaultValue={0}
                 error={!!errors.usedDays}
                 helperText={errors.usedDays?.message}
               />
@@ -117,9 +155,9 @@ export default function AddMembership() {
               </LocalizationProvider>
               <TextField
                 label="Pay Amount"
-                name="amountPaid"
                 fullWidth
                 margin="normal"
+                {...register("amountPaid")}
                 type="number"
                 error={!!errors.amountPaid}
                 helperText={errors.amountPaid?.message}

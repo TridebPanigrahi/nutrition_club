@@ -14,11 +14,11 @@ export const createMembership = async (req: Request, res: Response) => {
       memberId,
       status: "ACTIVE",
     });
-    if (activeMembership)
+    if (activeMembership){
       return res
         .status(400)
         .json({ message: "Member already has an active membership" });
-
+    }
     // determine total days
     const totalDays = type === "10_DAYS" ? 10 : 30;
     //create memberShip
