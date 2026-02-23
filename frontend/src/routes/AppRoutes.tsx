@@ -55,23 +55,21 @@ export default function AppRoutes() {
         <Route
           path="/admin/membership"
           element={
-            // <PrivateRoute>
-            //   <RoleRoute role="admin">
-            //     <AddMembership />
-            //   </RoleRoute>
-            // </PrivateRoute>
-            <MembershipList />
+            <PrivateRoute>
+              <RoleRoute role="admin">
+                <MembershipList />
+              </RoleRoute>
+            </PrivateRoute>
           }
         />
         <Route
           path="/admin/membership/add"
           element={
-            // <PrivateRoute>
-            //   <RoleRoute role="admin">
-            //     <AddMembership />
-            //   </RoleRoute>
-            // </PrivateRoute>
-            <AddMembership />
+            <PrivateRoute>
+              <RoleRoute role="admin">
+                <AddMembership />
+              </RoleRoute>
+            </PrivateRoute>
           }
         />
 

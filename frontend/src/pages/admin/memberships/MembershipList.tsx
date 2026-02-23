@@ -64,7 +64,9 @@ export const MembershipList = () => {
                 </TableCell>
                 <TableCell>{membership.totalDays}</TableCell>
                 <TableCell>{membership.usedDays}</TableCell>
-                <TableCell>{membership.memberId.referredBy}</TableCell>
+                <TableCell>
+                  {membership.memberId.referredBy?.name || "-"}
+                </TableCell>
                 <TableCell>{membership.amountPaid}</TableCell>
                 <TableCell>{membership.status}</TableCell>
               </TableRow>
