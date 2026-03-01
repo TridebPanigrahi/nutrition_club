@@ -1,73 +1,198 @@
-# React + TypeScript + Vite
+# 🥗 Nutrition Club (TypeScript Edition)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack web application built using **TypeScript**, designed to help users manage nutrition plans, track dietary habits, and maintain a healthy lifestyle through structured meal tracking and analytics.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📌 Overview
 
-## React Compiler
+Nutrition Club is a health-focused web platform that allows users to:
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+- Track daily meals and calorie intake
+- Monitor nutritional values (Protein, Carbs, Fats, etc.)
+- Create and follow diet plans
+- Maintain personal health records
+- View progress through interactive dashboards
 
-## Expanding the ESLint configuration
+This project emphasizes **type safety, scalability, and maintainable architecture** using TypeScript across the stack.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🚀 Features
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### 👤 User Features
+- User Registration & Login (JWT Authentication)
+- Profile Management
+- Daily Meal Tracking
+- Calorie & Nutrient Calculation
+- Diet Plan Creation
+- Progress Monitoring Dashboard
+- Meal History Tracking
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### 🛠 Admin Features
+- Add / Edit / Delete Food Items
+- Manage Nutrition Database
+- Monitor User Activities
+- Generate Reports
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🏗️ Tech Stack
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Frontend
+- React.js
+- TypeScript
+- HTML5
+- CSS3
+- REACT-HOOK-FORM
+- YUP VALIDATION
+
+### Backend
+- Node.js
+- Express.js
+- TypeScript
+
+### Database
+- MongoDB
+
+### Tools & Libraries
+- REST APIs
+- JWT Authentication
+- bcrypt (Password Hashing)
+- Mongoose
+- Git & GitHub
+
+---
+
+## 🏛️ System Architecture
+
+Client (React + TypeScript)
+⬇
+REST API (Node.js + Express + TypeScript)
+⬇
+MongoDB Database
+
+---
+
+## 🔐 Authentication & Security
+
+- JWT-based Authentication
+- Password Hashing using bcrypt
+- Protected Routes
+- Role-Based Access Control (User/Admin)
+- Environment Variable Protection
+
+---
+
+## 📂 Project Structure
+backend/
+│
+├── config/                # Database & environment configuration
+│
+├── controllers/           # Route controllers (business logic)
+│   ├── auth.controller.ts
+│   ├── member.controller.ts
+│   ├── membership.controller.ts
+│   ├── attendance.controller.ts
+│   ├── progressTracking.controller.ts
+│   └── weeklyProgram.controller.ts
+│
+├── middlewares/           # Authentication & authorization middleware
+│   ├── auth.middleware.ts
+│
+├── models/                # Mongoose models
+│   ├── User.model.ts
+│   ├── Member.model.ts
+│   ├── Membership.model.ts
+│   ├── Attendance.model.ts
+│   ├── ProgressTracking.model.ts
+│   ├── WeeklyProgram.model.ts
+│   ├── BodyMeasurement.model.ts
+│   ├── WeightCheck.model.ts
+│   └── ReferralReward.model.ts
+│
+├── routes/                # Express route definitions
+│   ├── auth.routes.ts
+│   ├── member.routes.ts
+│   ├── membership.routes.ts
+│   ├── attendance.routes.ts
+│   ├── progressTracking.routes.ts
+│   └── bodyMeasurement.routes.ts
+│
+├── utils/                 # Utility/helper functions
+│   ├── membership.util.ts
+│
+├── .env                   # Environment variables
+├── app.ts                 # Express app setup
+├── server.ts              # Server entry point
+├── tsconfig.json          # TypeScript config
+├── package.json
+└── package-lock.json
+
+frontend/
+│
+├── public/                # Static files
+│
+├── src/
+│   │
+│   ├── assets/            # Images, icons, styles
+│   │
+│   ├── components/        # Reusable UI components
+│   │   ├── dashboard/
+│   │   └── landing/
+│   │
+│   ├── context/           # React Context (AuthContext)
+│   │   └── AuthContext.tsx
+│   │
+│   ├── hooks/             # Custom hooks
+│   │   └── useAuth.ts
+│   │
+│   ├── layouts/           # Layout wrappers (DashboardLayout)
+│   │
+│   ├── pages/             # Application pages
+│   │   ├── public/
+│   │   │   └── Landing.tsx
+│   │   │
+│   │   ├── auth/
+│   │   │   ├── Login.tsx
+│   │   │   └── Register.tsx
+│   │   │
+│   │   ├── admin/
+│   │   │   ├── AdminDashboard.tsx
+│   │   │   ├── members/
+│   │   │   └── memberships/
+│   │   │
+│   │   └── user/
+│   │       └── UserDashboard.tsx
+│   │
+│   ├── routes/            # React Router configuration
+│   │   ├── AppRoutes.tsx
+│   │   ├── PrivateRoute.tsx
+│   │   └── RoleRoute.tsx
+│   │
+│   ├── services/          # API service layer (Axios)
+│   │   ├── axiosInstance.ts
+│   │   ├── authService.ts
+│   │   ├── memberService.ts
+│   │   └── membershipService.ts
+│   │
+│   ├── types/             # TypeScript interfaces
+│   │
+│   ├── validation/        # Yup validation schemas
+│   │
+│   ├── App.tsx
+│   ├── main.tsx
+│   └── index.html
+│
+├── tsconfig.json
+├── eslint.config.js
+├── package.json
+└── package-lock.json
+
+## 🏗 Architecture Overview
+
+- Backend: Node.js + Express + MongoDB + TypeScript
+- Frontend: React + TypeScript + Material UI
+- Authentication: JWT + Role-based access
+- Form Handling: React Hook Form + Yup
+- API Communication: Axios
