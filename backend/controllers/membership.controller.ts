@@ -14,11 +14,11 @@ export const createMembership = async (req: Request, res: Response) => {
       memberId,
       status: "ACTIVE",
     });
-    if (activeMembership)
+    if (activeMembership){
       return res
         .status(400)
         .json({ message: "Member already has an active membership" });
-
+    }
     // determine total days
     const totalDays = type === "10_DAYS" ? 10 : 30;
     //create memberShip
@@ -36,5 +36,21 @@ export const createMembership = async (req: Request, res: Response) => {
     res.status(201).json(membership);
   } catch (error: any) {
     res.status(500).json({ message: error.message });
+  }
+};
+
+export const getMembership = async (_: Request, res: Response) => {
+  try {
+    const membership = await Membership.find({})
+      .populate({
+        path: "memberId",
+        model: "Member",
+        select: "name referredBy",
+        populate: { path: "referredBy", select: "name", model: "Member" },
+      })
+      .lean();
+    res.json(membership);
+  } catch (error) {
+    res.status(500).json(error);
   }
 };
